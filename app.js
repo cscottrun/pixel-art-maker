@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', (ev) => {
 
 //make 2x2 canvas of squares
 let canvasDivCount = 0;
-while (canvasDivCount < 209) {
+while (canvasDivCount < 216) {
     const canvasDiv = document.createElement('div')
     // canvasDiv.setAttribute('class','canvasDiv')
     document.body.appendChild(canvasDiv)
@@ -33,7 +33,7 @@ let colorList = ['red', 'blue', 'aqua', 'grey','maroon','fuchsia','green','purpl
 let palBoxSize = 100/colorList.length
 for (let k = 0; k < colorList.length; k++) {
     const palDiv = document.createElement('div');
-    palDiv.style.width = palBoxSize
+    palDiv.style.width = '10%'
     document.body.appendChild(palDiv);
     palDiv.classList.add('palDivClass',colorList[k])
     palDiv.addEventListener('click', (ev) => {
