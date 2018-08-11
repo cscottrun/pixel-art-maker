@@ -49,13 +49,25 @@ document.addEventListener('DOMContentLoaded', (ev) => {
 
     //Event Listener for Pallet
     palette.addEventListener('click', (ev) => {
-        if (ev.target.classList.contains('paint')) { //if you click on paint
-            //then take the ID of the target, and give that ID to the current box.
-        console.log('you clicked violet')
+        //if you click on paint
+        if (ev.target.classList.contains('paint')) { 
+             //then take the ID of the target,
+             let chosenId = ev.target.id; 
+             //and give that ID to the current box.
+             current.setAttribute('id',chosenId)
+             return chosenId; 
         }
     })
         
-
+    //Event listener for Canvas
+    canvas.addEventListener('click', (ev) => {
+        if (ev.target.classList.contains('pixel')) {
+            //get it for current color
+            const currentId = document.getElementsByClassName('current')[0].id
+            //set id of click target to be same as current color
+            ev.target.setAttribute('id',currentId);
+        }
+    })
         
 
 
