@@ -4,7 +4,7 @@ body {
 h1{
     font-family: 'Courier New', Courier, monospace;
     color: black;
-    text-align: center;
+    margin-left: 37%;
 }
 h5 {
     font-family: 'Courier New', Courier, monospace;
@@ -18,8 +18,7 @@ h5 {
     background-color:darkgrey;
     border: 20px solid darkgrey;
     border-radius: 30px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 29%;
     
 
 }
@@ -45,7 +44,7 @@ h5 {
     margin: 4px;
 }
 .current {
-    width: 375px;
+    width: 300px;
     height: 30px;
     background-color: white;
     border: 1px solid darkgray;
@@ -61,7 +60,7 @@ h5 {
     float: right;
     margin-top: 15px;
 }
-.submit {
+.submit, .reset {
     width: 60px;
     height: 30px;
     background-color: white;

@@ -54,23 +54,43 @@ document.addEventListener('DOMContentLoaded', (ev) => {
     palette.appendChild(submit);
     submit.innerHTML= '<h5>choose</h5>' 
     submit.addEventListener('click', (ev) => {
-        current.style.backgroundColor = document.getElementsByTagName('input')[0].value;
         current.setAttribute('id','custom')
+        if (document.getElementsByClassName('current')[0].id === 'custom') {
+            current.style.backgroundColor = document.getElementsByTagName('input')[0].value;
+        }
+
+    })
+
+    //Reset box
+    const reset = document.createElement('div');
+    reset.setAttribute('class','reset')
+    palette.appendChild(reset);
+    reset.innerHTML= '<h5>reset</h5>' 
+    reset.addEventListener('click', (ev) => {
+        for ( i = 0; i < document.getElementsByClassName('pixel').length; i++) {
+            document.getElementsByClassName('pixel')[i].removeAttribute('id');
+            document.getElementsByClassName('pixel')[i].removeAttribute('style');
+        }
     })
     
     //Event Listener for Pallet
     palette.addEventListener('click', (ev) => {
         //if you click on paint
         if (ev.target.classList.contains('paint')) { 
+            // remove any background color that may persist from custom
+            current.removeAttribute('style');
              //then take the ID of the target,
              let chosenId = ev.target.id; 
              //and give that ID to the current box.
              current.setAttribute('id',chosenId)
              return chosenId; 
+             
         }
     })    
         
     //Event listener for Canvas
+        //adjust canvas event listener to listen for mouseout
+        //and only respond if mouse if down
     canvas.addEventListener('mouseout', (ev) => {
         if (ev.target.classList.contains('pixel')&& mouseState === 'down') {
             if (document.getElementsByClassName('current')[0].id !== 'custom') {
@@ -78,18 +98,15 @@ document.addEventListener('DOMContentLoaded', (ev) => {
                 const currentId = document.getElementsByClassName('current')[0].id
                 //set id of click target to be same as current color
                 ev.target.setAttribute('id',currentId);
-            } else {
+            } else if (document.getElementsByClassName('current')[0].id === 'custom'){
                 ev.target.setAttribute('id','custom');
                 ev.target.style.backgroundColor= document.getElementsByTagName('input')[0].value;
             }      
         }
     })
-    //Attempt to implement mouse dragging
+    //Implement mouse dragging
         //create mouse state variable to capture mouse down and up
-        let mouseState = '';
-        //adjust canvas event listener to listen for mouseenter
-        //and only respond if mouse if down
-    
+    let mouseState = '';    
     canvas.addEventListener('mousedown', (ev) => {
         mouseState = 'down';
         return mouseState;
@@ -99,8 +116,23 @@ document.addEventListener('DOMContentLoaded', (ev) => {
         return mouseState;
     })
 
+    //Attempt to implement fill
+        /*identify targt div
+            -check whether is has color - if not, tag it and move to the neighbors
+            -identify neighbors based on x,y coordinates
+            */
 
+    //Attemtp to implement save
+        //add event listener to some button to signify save
+        //
+    //check for local storage
+    // if (localStorage) {
+    //     current.addEventListener('dblclick', (ev) => {
+    //         for (let i = 0; i < pixelNumber; i++) {
 
+    //         }
+    //         let saved = document.getElementsByTagName('div')[i].id;
+    //     })
 
 
 })
