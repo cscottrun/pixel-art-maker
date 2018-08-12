@@ -46,7 +46,18 @@ document.addEventListener('DOMContentLoaded', (ev) => {
     custom.type= 'color'
     custom.setAttribute('class','custom')
     palette.appendChild(custom);
+    let customColor = document.getElementsByTagName('input')[0].value
 
+    //Submit custom color button
+    const submit = document.createElement('div');
+    submit.setAttribute('class','submit')
+    palette.appendChild(submit);
+    submit.innerHTML= '<h5>choose</h5>' 
+    submit.addEventListener('click', (ev) => {
+        current.style.backgroundColor = document.getElementsByTagName('input')[0].value;
+        current.setAttribute('id','custom')
+    })
+    
     //Event Listener for Pallet
     palette.addEventListener('click', (ev) => {
         //if you click on paint
@@ -57,19 +68,36 @@ document.addEventListener('DOMContentLoaded', (ev) => {
              current.setAttribute('id',chosenId)
              return chosenId; 
         }
-    })
+    })    
         
     //Event listener for Canvas
-    canvas.addEventListener('click', (ev) => {
-        if (ev.target.classList.contains('pixel')) {
-            //get it for current color
-            const currentId = document.getElementsByClassName('current')[0].id
-            //set id of click target to be same as current color
-            ev.target.setAttribute('id',currentId);
+    canvas.addEventListener('mouseout', (ev) => {
+        if (ev.target.classList.contains('pixel')&& mouseState === 'down') {
+            if (document.getElementsByClassName('current')[0].id !== 'custom') {
+                //get it for current color
+                const currentId = document.getElementsByClassName('current')[0].id
+                //set id of click target to be same as current color
+                ev.target.setAttribute('id',currentId);
+            } else {
+                ev.target.setAttribute('id','custom');
+                ev.target.style.backgroundColor= document.getElementsByTagName('input')[0].value;
+            }      
         }
     })
-        
-
+    //Attempt to implement mouse dragging
+        //create mouse state variable to capture mouse down and up
+        let mouseState = '';
+        //adjust canvas event listener to listen for mouseenter
+        //and only respond if mouse if down
+    
+    canvas.addEventListener('mousedown', (ev) => {
+        mouseState = 'down';
+        return mouseState;
+    })
+    canvas.addEventListener('mouseup', (ev) => {
+        mouseState = 'up';
+        return mouseState;
+    })
 
 
 

@@ -6,6 +6,11 @@ h1{
     color: black;
     text-align: center;
 }
+h5 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin-top: 7px;
+}
 
 .canvas, .palette {
     width: 550px;
@@ -49,12 +54,22 @@ h1{
     margin-top: 15px;
 }
 .custom {
-    width: 100px;
+    width: 45px;
     height: 30px;
     border: 1px solid darkgray;
     border-radius: 20px;
     float: right;
     margin-top: 15px;
+}
+.submit {
+    width: 60px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    float: right;
+    margin: 15px 15px;
+
 }
 
 #black {
@@ -83,4 +98,7 @@ h1{
 }
 #violet {
     background-color: purple;
+}
+#custom {
+
 }
